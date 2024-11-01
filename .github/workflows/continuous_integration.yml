@@ -1,0 +1,39 @@
+name: Continuous integration
+
+# Running on the branch main and on all PRs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  continuous_integration:
+    name: Continuous integration
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fetch uv's version from .uv-version
+        id: uv-version
+        run: echo "uv-version=$(cat .uv-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Install uv with the version in .uv-version
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: ${{ steps.uv-version.outputs.uv-version }}
+          enable-cache: true
+
+      - name: Install Python with the version in .python-version
+        run: uv python install
+
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
+      - name: Check format of Python code
+        run: uv run ruff format --check --diff
+
+      - name: Lint Python code
+        run: uv run ruff check

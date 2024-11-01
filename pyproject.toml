@@ -1,0 +1,18 @@
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+
+[project]
+name = "sports_tracker"
+version = "0.1.0"
+description = "Track how often I do sports."
+keywords = ["sports", "tracker"]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.urls]
+Repositorty = "https://github.com/dmarcoux/sports_tracker"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.7.2",
+]
