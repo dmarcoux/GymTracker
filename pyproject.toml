@@ -7,12 +7,23 @@ description = "Track how often I do sports."
 keywords = ["sports", "tracker"]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.115.4",
+]
 
 [project.urls]
 Repositorty = "https://github.com/dmarcoux/sports_tracker"
 
 [dependency-groups]
 dev = [
+    "pytest>=8.3.3",
     "ruff>=0.7.2",
+]
+
+# Configure pytest
+# https://docs.pytest.org/en/stable/reference/customize.html
+# https://docs.pytest.org/en/stable/reference/reference.html#ini-options-ref
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
 ]
