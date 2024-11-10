@@ -17,3 +17,11 @@ ignore = [
 	"D212", # Incompatible with D213, one has to be enabled and the other ignored
 	"ISC001", "COM812", # As recommended by ruff when running `ruff format`, these rules should be disabled to avoid unexpected behavior
 ]
+
+# Disable specific rules for certain files
+[lint.per-file-ignores]
+"tests/**/*.py" = [
+	"S105", "S106", "S107", # Hardcoded passwords in tests are not an issue, they are just tests anyway
+	"S101", # asserts allowed in tests
+	"INP001", # False positive when using pytest, since its test directories shouldn't contain packages (so never contain __init__.py) - https://github.com/astral-sh/ruff/issues/6474
+]
