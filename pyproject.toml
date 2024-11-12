@@ -11,6 +11,10 @@ dependencies = [
     "fastapi[standard]>=0.115.4",
 ]
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project.urls]
 Repositorty = "https://github.com/dmarcoux/sports_tracker"
 
