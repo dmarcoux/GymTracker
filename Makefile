@@ -1,4 +1,4 @@
-.PHONY: dev format lint test
+.PHONY: dev format lint test tag
 
 # Run the FastAPI application in development mode
 dev:
@@ -15,3 +15,13 @@ lint:
 # Run tests
 test:
 	uv run pytest
+
+# Create and push a tag, with its name being the project's version from pyproject.toml
+tag:
+	@if [ -z "$(MESSAGE)" ]; then \
+		echo 'A message is required for the Git tag. Try again with `MESSAGE="My tag message" make tag`.'; \
+	else \
+		VERSION=$(shell uv run - <<< 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])'); \
+		git tag --annotate $$VERSION --message "$(MESSAGE)"; \
+		git push origin tag $$VERSION; \
+	fi
