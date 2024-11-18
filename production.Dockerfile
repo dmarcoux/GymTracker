@@ -67,5 +67,8 @@ COPY docker-entrypoint.sh /
 # Copy virtual environment and dependencies from the previous stage, changing their ownership to the non-root user
 COPY --from=build --chown=app:app /app /app
 
+# Default port
+ENV SPORTS_TRACKER_PORT=8282
+
 USER app
 WORKDIR /app
