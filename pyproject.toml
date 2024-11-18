@@ -2,7 +2,7 @@
 
 [project]
 name = "sports_tracker"
-version = "0.1.0"
+version = "0.1.1"
 description = "Track how often I do sports."
 keywords = ["sports", "tracker"]
 readme = "README.md"
