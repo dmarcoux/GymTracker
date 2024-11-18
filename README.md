@@ -15,3 +15,17 @@ environment when navigating to this project's root directory.
 
 Refer to the [Makefile](./Makefile) to see various commands, like linting the
 code.
+
+# Production Environment with Docker
+
+[Docker
+images](https://github.com/dmarcoux/sports_tracker/pkgs/container/sports_tracker)
+are available for _linux/amd64_ and _linux/arm64_.
+
+## Environment Variables
+
+Customize the application by using environment variables.
+
+| Name | Description | Default Value |
+|------|-------------|---------------|
+| `SPORTS_TRACKER_PORT` | Configure the port for the web application | 8282 |
