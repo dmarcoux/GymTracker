@@ -68,7 +68,7 @@ COPY docker-entrypoint.sh /
 COPY --from=build --chown=app:app /app /app
 
 # Default port
-ENV SPORTS_TRACKER_PORT=8282
+ENV BACKEND_PORT=8282
 
 USER app
 WORKDIR /app

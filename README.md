@@ -28,4 +28,4 @@ Customize the application by using environment variables.
 
 | Name | Description | Default Value |
 |------|-------------|---------------|
-| `SPORTS_TRACKER_PORT` | Configure the port for the web application | 8282 |
+| `BACKEND_PORT` | Configure the port for the backend application | 8282 |

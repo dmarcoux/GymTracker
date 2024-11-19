@@ -1,7 +1,7 @@
 # https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 
 [project]
-name = "sports_tracker"
+name = "backend"
 version = "0.1.1"
 description = "Track how often I do sports."
 keywords = ["sports", "tracker"]
@@ -32,5 +32,5 @@ pythonpath = [
     "src",
 ]
 testpaths = [
-    "tests",
+    "tests/backend",
 ]

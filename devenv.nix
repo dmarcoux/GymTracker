@@ -55,11 +55,38 @@ in
     # Enable Python virtual environment. It's created with `uv venv`.
     venv.enable = true;
   };
-
-  # Setup services - https://devenv.sh/services/
-  # https://devenv.sh/supported-services/postgres/
-  services.postgres = {
+  languages.javascript = {
     enable = true;
+    # Node.js Active LTS
+    package = pkgs-unstable.nodejs-slim_22;
+    # Setup npm
+    npm.enable = true;
+  };
+
+  # https://devenv.sh/processes/
+  processes = {
+    # Run the FastAPI backend in development mode
+    backend = {
+      exec = "make backend";
+    };
+
+    # Run the React frontend in development mode
+    frontend = {
+      exec = "make frontend";
+    };
+
+    # TailwindCSS watches for changes in styles and regenerates the CSS as needed
+    tailwindcss = {
+      # TODO: This should be relying on STATIC_DIR from config.py for `--input` and `--output`
+      exec = "tailwindcss --config tailwind.config.js --input static/styles/main.css --output static/css/main.css --watch";
+      # Configure how the process is executed
+      process-compose = {
+        # Set working directory
+        working_dir = "src/frontend";
+        # Certain processes check if they are running within a terminal, so in this case we need to simulate a TTY mode
+        is_tty = true;
+      };
+    };
   };
 
   # https://devenv.sh/tasks/

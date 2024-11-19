@@ -1,8 +1,14 @@
-.PHONY: dev format lint test tag
+.PHONY: backend frontend format lint up down logs test tag
 
-# Run the FastAPI application in development mode
-dev:
-	uv run fastapi dev src/sports_tracker/main.py
+# Run the FastAPI backend in development mode. Rely on `up` if the whole application
+# is needed. It runs all the required processes for the application (frontend, backend, etc...)
+backend:
+	uv run fastapi dev src/backend/main.py
+
+# Run the React frontend in development mode. Rely on `up` if the whole application
+# is needed. It runs all the required processes for the application (frontend, backend, etc...)
+frontend:
+	npm run dev --prefix src/frontend
 
 # Format the Python code
 format:
@@ -11,6 +17,18 @@ format:
 # Lint the Python code
 lint:
 	uv run ruff check --show-fixes --fix
+
+# Start devenv processes
+up:
+	devenv processes up --detach
+
+# Stop devenv processes
+down:
+	devenv processes down
+
+# See the logs of devenv processes
+logs:
+	tail -f .devenv/processes.log
 
 # Run tests
 test:
